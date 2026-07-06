@@ -1,385 +1,321 @@
 * {
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
 }
 
 body {
   margin: 0;
+  background: #fbfaf7;
+  color: #263843;
+  font-family: Inter, Arial, sans-serif;
 }
 
-.home {
-  min-height: 100vh;
-  background: #fafafa;
-  padding: 40px 48px;
-  position: relative;
+button,
+select,
+input,
+textarea {
+  font: inherit;
 }
 
-.relogio {
-  position: absolute;
-  top: 40px;
-  right: 48px;
-  text-align: right;
+button {
+  cursor: pointer;
 }
 
-.relogio-hora {
-  display: block;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1f1f1f;
-}
-
-.relogio-data {
-  display: block;
-  font-size: 11px;
-  color: #b0b0b0;
-  text-transform: capitalize;
+.app {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 32px 28px;
 }
 
 .topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  padding-right: 90px;
+  display: grid;
+  grid-template-columns: 140px 1fr 170px;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 14px;
+  border-bottom: 4px solid #263843;
 }
 
 .topo h1 {
-  font-size: 50px;
-  font-weight: 700;
-  color: #1f1f1f;
-  margin: 0 0 6px 0;
-}
-
-.frase-motivacional {
-  font-size: 16px;
-  color: #9a9a9a;
-  opacity:.7;
   margin: 0;
-  font-style: italic;
+  text-align: center;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
-.botao-nova {
-  background: #3b6ef0;
+.botao-novo {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 18px;
+  background: #000000;
   color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
+  font-weight: 800;
+  box-shadow: 0 3px 0 #696969;
+}
+
+.topo select {
+  justify-self: end;
+  width: 170px;
+  border: 2px solid #9aa6ad;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: white;
+  color: #263843;
+  font-weight: 700;
+  outline: none;
+}
+
+.linha-status {
+  display: flex;
+  gap: 16px;
+  margin: 18px 0 22px;
+  color: #7a858b;
   font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  flex-shrink: 0;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-.botao-nova:hover {
-  background: #2f5cd6;
-}
-
-.layout {
+.grade {
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 18px;
 }
 
-.grid-tarefas {
+.pasta {
+  position: relative;
+  min-height: 286px;
+  padding-top: 18px;
+}
+
+.aba {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46%;
+  height: 38px;
+  border: 2px solid #d9dedf;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: #e8e8e6;
+}
+
+.aba::after {
+  content: "";
+  position: absolute;
+  right: -28px;
+  bottom: 0;
+  width: 42px;
+  height: 38px;
+  background: #e8e8e6;
+  transform: skewX(24deg);
+  border-right: 2px solid #d9dedf;
+  border-top: 2px solid #d9dedf;
+  border-radius: 0 8px 0 0;
+}
+
+.conteudo-pasta {
+  position: relative;
+  display: flex;
+  min-height: 268px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 16px 16px;
+  border: 2px solid #d9dedf;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 0 rgba(38, 56, 67, 0.04);
+}
+
+.etiqueta-arquivo {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
 }
 
-.estado-vazio {
-  color: #b8b8b8;
-  font-size: 14px;
-  grid-column: 1 / -1;
+.campo {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #263843;
 }
 
-.card-tarefa {
-  border-radius: 16px;
-  padding: 20px;
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 6px 18px rgba(0,0,0,.05);
-}
-
-.card-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.checkbox {
-  width: 18px;
-  height: 18px;
-  border-radius: 6px;
-  border: 2px solid rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  padding: 0;
-}
-
-.checkbox:hover {
-  background: white;
-}
-
-.botao-excluir {
-  background: none;
-  border: none;
-  color: rgba(0, 0, 0, 0.3);
-  font-size: 16px;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0;
-}
-
-.botao-excluir:hover {
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.titulo-tarefa {
-  font-size: 17px;
-  font-weight: 700;
-  color: #1f1f1f;
-  margin: 0 0 6px 0;
-}
-
-.descricao-tarefa {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
-  margin: 0;
-  line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: box;
-  line-clamp: 3;
-  box-orient: vertical;
-}
-
-.cor-azul { background: #dceafd; }
-.cor-roxo { background: #e6e0fb; }
-.cor-amarelo { background: #fdf1d6; }
-.cor-rosa { background: #fbe2ec; }
-.cor-verde { background: #dff5e6; }
-
-.coluna-concluidas {
-  background: white;
-  border: 1px solid #eee;
-  border-radius: 14px;
-  padding: 18px;
-  font-size:18px;
-  position: sticky;
-  top: 40px;
-}
-
-.coluna-titulo {
-  font-size: 20px;
-  font-weight: 700;
-  color: #9a9a9a;
+.campo span {
+  color: #263843;
+  font-size: 11px;
+  font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 0 0 12px 0;
 }
 
-.coluna-vazia {
-  font-size: 12px;
-  color: #c2c2c2;
+.campo strong {
+  color: #263843;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.campo p {
   margin: 0;
-}
-
-.item-concluido {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f4f4f4;
-}
-
-.item-concluido:last-child {
-  border-bottom: none;
-}
-
-.checkbox-concluido {
-  width: 18px;
-  height: 18px;
-  border-radius: 6px;
-  border: none;
-  background: #3b6ef0;
-  color: white;
-  font-size: 10px;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.titulo-concluido {
-  flex: 1;
-  font-size: 12px;
-  color: #b0b0b0;
-  text-decoration: line-through;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.excluir-concluido {
-  background: none;
-  border: none;
-  color: #d0d0d0;
+  color: #4f5f67;
   font-size: 14px;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
+  line-height: 1.35;
 }
 
-.excluir-concluido:hover {
-  color: #999;
+.botoes-card {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
 }
 
-.modal-fundo {
+.botao-concluir,
+.botao-deletar {
+  width: 100%;
+  border-radius: 7px;
+  padding: 9px 10px;
+  font-size: 12px;
+  font-weight: 200px;
+}
+
+.botao-concluir {
+  border: 0;
+  background: #000000;
+  color: white;
+}
+
+.botao-deletar {
+  border: 2px solid #d9dedf;
+  background: white;
+  color: #7a858b;
+}
+
+.botao-concluir:hover {
+  background: #696969;
+}
+
+.botao-deletar:hover {
+  border-color: #d96b6b;
+  color: #c84f4f;
+}
+
+.pasta.concluida .conteudo-pasta {
+  background: #f4faf6;
+}
+
+.pasta.concluida .campo strong,
+.pasta.concluida .campo p {
+  opacity: 0.58;
+  text-decoration: line-through;
+}
+
+.vazio {
+  grid-column: 1 / -1;
+  padding: 32px;
+  border: 2px dashed #d9dedf;
+  border-radius: 8px;
+  color: #7a858b;
+  text-align: center;
+  font-weight: 800;
+}
+
+.modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 120px;
-  animation: fundo-aparecer 0.15s ease;
-}
-
-@keyframes fundo-aparecer {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.modal-card {
-  background: white;
-  border-radius: 16px;
+  display: grid;
+  place-items: center;
   padding: 20px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  animation: card-aparecer 0.2s ease;
+  background: rgba(38, 56, 67, 0.28);
 }
 
-@keyframes card-aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.formulario {
+  width: min(100%, 430px);
+  padding: 22px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 24px 60px rgba(38, 56, 67, 0.24);
 }
 
-.modal-topo {
+.topo-formulario {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
-.modal-titulo {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1f1f1f;
+.topo-formulario h2 {
   margin: 0;
+  font-size: 24px;
 }
 
-.modal-fechar {
-  background: none;
-  border: none;
+.topo-formulario button {
+  border: 0;
+  background: transparent;
+  color: #7a858b;
   font-size: 20px;
-  color: #b0b0b0;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
+  font-weight: 900;
 }
 
-.modal-fechar:hover {
-  color: #666;
-}
-
-.modal-card input {
-  width: 100%;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
-  outline: none;
-  margin-bottom: 10px;
-}
-
-.modal-card input:focus {
-  border-color: #3b6ef0;
-}
-
-.modal-card textarea {
-  width: 100%;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 13px;
-  outline: none;
-  resize: none;
-  font-family: inherit;
-}
-
-.modal-card textarea:focus {
-  border-color: #3b6ef0;
-}
-
-.modal-rodape {
-  display: flex;
-  justify-content: flex-end;
+.formulario label {
+  display: grid;
   gap: 8px;
-  margin-top: 14px;
-}
-
-.botao-cancelar {
-  background: none;
-  border: none;
-  color: #9a9a9a;
+  margin-bottom: 16px;
+  color: #53626a;
   font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 8px 14px;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.botao-cancelar:hover {
-  color: #666;
-}
-
-.botao-adicionar {
-  background: #1f1f1f;
-  color: white;
-  border: none;
-  padding: 8px 18px;
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  border: 2px solid #d9dedf;
   border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 12px;
+  outline: none;
+  color: #263843;
 }
 
-@media (max-width: 700px) {
-  .layout {
-    grid-template-columns: 1fr;
+.formulario textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  border-color: #42b66b;
+}
+
+.salvar {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  background: #000000;
+  color: white;
+  font-weight: 500px;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 24px 16px;
   }
-  .coluna-concluidas {
-    position: static;
-  }
-  .relogio {
-    position: static;
-    text-align: left;
-    margin-bottom: 16px;
-  }
+
   .topo {
-    padding-right: 0;
-    flex-direction: column;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .topo h1 {
+    grid-row: 1;
+    text-align: left;
+    font-size: 28px;
+  }
+
+  .botao-novo,
+  .topo select {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .linha-status {
+    flex-wrap: wrap;
   }
 }
