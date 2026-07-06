@@ -1,0 +1,385 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+  margin: 0;
+}
+
+.home {
+  min-height: 100vh;
+  background: #fafafa;
+  padding: 40px 48px;
+  position: relative;
+}
+
+.relogio {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  text-align: right;
+}
+
+.relogio-hora {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.relogio-data {
+  display: block;
+  font-size: 11px;
+  color: #b0b0b0;
+  text-transform: capitalize;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-right: 90px;
+}
+
+.topo h1 {
+  font-size: 50px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0 0 6px 0;
+}
+
+.frase-motivacional {
+  font-size: 16px;
+  color: #9a9a9a;
+  opacity:.7;
+  margin: 0;
+  font-style: italic;
+}
+
+.botao-nova {
+  background: #3b6ef0;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.botao-nova:hover {
+  background: #2f5cd6;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.grid-tarefas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.estado-vazio {
+  color: #b8b8b8;
+  font-size: 14px;
+  grid-column: 1 / -1;
+}
+
+.card-tarefa {
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0;
+}
+
+.checkbox:hover {
+  background: white;
+}
+
+.botao-excluir {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.botao-excluir:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.titulo-tarefa {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0 0 6px 0;
+}
+
+.descricao-tarefa {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  line-clamp: 3;
+  box-orient: vertical;
+}
+
+.cor-azul { background: #dceafd; }
+.cor-roxo { background: #e6e0fb; }
+.cor-amarelo { background: #fdf1d6; }
+.cor-rosa { background: #fbe2ec; }
+.cor-verde { background: #dff5e6; }
+
+.coluna-concluidas {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 18px;
+  font-size:18px;
+  position: sticky;
+  top: 40px;
+}
+
+.coluna-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 12px 0;
+}
+
+.coluna-vazia {
+  font-size: 12px;
+  color: #c2c2c2;
+  margin: 0;
+}
+
+.item-concluido {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.item-concluido:last-child {
+  border-bottom: none;
+}
+
+.checkbox-concluido {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: none;
+  background: #3b6ef0;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.titulo-concluido {
+  flex: 1;
+  font-size: 12px;
+  color: #b0b0b0;
+  text-decoration: line-through;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.excluir-concluido {
+  background: none;
+  border: none;
+  color: #d0d0d0;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.excluir-concluido:hover {
+  color: #999;
+}
+
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 120px;
+  animation: fundo-aparecer 0.15s ease;
+}
+
+@keyframes fundo-aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  animation: card-aparecer 0.2s ease;
+}
+
+@keyframes card-aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modal-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.modal-fechar {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #b0b0b0;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-fechar:hover {
+  color: #666;
+}
+
+.modal-card input {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.modal-card input:focus {
+  border-color: #3b6ef0;
+}
+
+.modal-card textarea {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+}
+
+.modal-card textarea:focus {
+  border-color: #3b6ef0;
+}
+
+.modal-rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.botao-cancelar {
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 14px;
+}
+
+.botao-cancelar:hover {
+  color: #666;
+}
+
+.botao-adicionar {
+  background: #1f1f1f;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .coluna-concluidas {
+    position: static;
+  }
+  .relogio {
+    position: static;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  .topo {
+    padding-right: 0;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
