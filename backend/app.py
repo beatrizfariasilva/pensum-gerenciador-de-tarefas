@@ -1,9 +1,13 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from database import supabase
+import os
+import json
+from google import genai
 
 app = Flask(__name__)
 CORS(app)
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 #rota CREATE: permite criar uma nova tarefa contendo título, descrição e status
 @app.route("/tarefas", methods=['POST'])
@@ -34,7 +38,48 @@ def delete_task(id):
     if not resposta.data:
         return jsonify({"erro": "Tarefa não encontrada."}), 404
     return jsonify({"mensagem": "Tarefa concluída."}), 200
+
+#sugestão de prioridade de tarefas com API do Gemini
+@app.route("/tarefas/prioridades", methods=["GET"])
+def sugerir_prioridades():
+    resposta = supabase.table("tarefas").select("*").execute()
+    tarefas = resposta.data
+
+    if not tarefas:
+        return jsonify([]), 200
     
+    prompt = f"""
+        Analise a lista de tarefas abaixo e sugira uma prioridade para cada uma.
+
+        Regras:
+        - Use apenas as prioridades: Alta, Média ou Baixa.
+        - Explique o motivo de forma curta.
+        - Responda somente em JSON válido.
+        - Não use markdown.
+        - Não escreva texto antes ou depois do JSON.
+
+        Formato esperado:
+        [
+        {{
+            "id": 1,
+            "titulo": "Nome da tarefa",
+            "prioridade": "Alta",
+            "motivo": "Motivo curto da prioridade."
+        }}
+        ]
+
+        Tarefas:
+        {json.dumps(tarefas, ensure_ascii=False)}
+    """
+    resposta = client.interactions.create(
+        model="gemini-3.5-flash",
+        input=prompt
+    )
+
+    texto = resposta.output_text.strip()
+    resultado = json.loads(texto)
+
+    return jsonify(resultado), 200
 
 if __name__=="__main__":
     app.run(debug=True)
