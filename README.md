@@ -1,4 +1,4 @@
-# TeamTask — Gerenciador de Tarefas
+# TeamTask - Gerenciador de Tarefas
 
 Aplicação web para cadastrar, listar, filtrar e acompanhar tarefas, com sugestão de prioridade gerada por IA.
 
@@ -10,7 +10,7 @@ Aplicação web para cadastrar, listar, filtrar e acompanhar tarefas, com sugest
 
 ---
 
-## Stack
+## Stacks
 
 | Camada | Tecnologia |
 |---|---|
@@ -22,19 +22,39 @@ Aplicação web para cadastrar, listar, filtrar e acompanhar tarefas, com sugest
 
 ## Funcionalidades
 
-- Criar, listar, atualizar e excluir tarefas (título, descrição, status)
+- Criar, listar, atualizar status e excluir tarefas (título, descrição, status)
 - Filtrar por status (todas / pendentes / concluídas)
-- Sugestão de prioridade das tarefas via IA, com justificativa
+- Sugestão de prioridade das tarefas com Gemini via API
 - Interface responsiva
 
 ## Arquitetura
 
 ```
-frontend/  → React + Vite. Interface, chamadas à API, exibição das sugestões de IA
-backend/   → Flask. API REST, acesso ao Supabase, integração com Gemini
+``` 
+teamtask-gerenciador-de-tarefas/
+├─ README.md
+├─ backend/
+│  ├─ app.py
+│  ├─ database.py
+│  └─ requirements.txt
+└─ frontend/
+   ├─ index.html
+   ├─ package.json
+   ├─ vite.config.js
+   ├─ public/
+   │  ├─ favicon.svg
+   │  └─ icons.svg
+   └─ src/
+      ├─ App.jsx
+      ├─ App.css
+      ├─ index.css
+      ├─ main.jsx
+      └─ assets/
+         └─ hero.png
+```
 ```
 
-Front-end e back-end são independentes, comunicam-se via HTTP e têm deploys separados.
+Front-end e back-end são independentes, comunicam-se via HTTP.
 
 ## Rotas da API
 
@@ -71,7 +91,7 @@ GET /tarefas/prioridades
 
 ## Como executar localmente
 
-**Pré-requisitos:** Node.js, Python, Git, conta no Supabase, chave de API do Gemini.
+**Pré-requisitos:** Ter instalado na máquina o Node.js, Python, Git, abrir uma conta no Supabase, configurar uma chave de API do Gemini.
 
 **Back-end**
 ```bash
@@ -104,17 +124,17 @@ npm run dev
 
 - **Supabase** como banco de dados para persistência dos dados.
 - **Consumo de API + Ferramenta de IA** como diferencial: o Gemini analisa as tarefas cadastradas e devolve prioridade + motivo curto.
-- **Dados sensíveis em .env** para proteção das chaves e url
+- **Deploy** do backend e frontend para que facilitar a navegação dos usuários pela aplicação.
+- **Dados sensíveis em .env** para proteção das chaves e url do banco.
 
 ## Uso de IA no desenvolvimento
 
-- **Claude IA** para sugestão e melhoria de interface, principalmente no front.
-  Com isso, ajustei o tratamento de erros, a validação dos campos e hierarquia visual. 
+- **Claude IA** para sugestão e melhoria de interface, principalmente no front. Também auxiliou na implementação de tratamento de erros e validação dos campos. 
 
-- **Codex** para estruturar o prompt enviada à Gemini. A resposta inicial não vinha em JSON consistente. Com esse auxilio consegui ajustar o prompt para forçar o formato de saída. Também utilizei para correção de identação de todo o código.
+- **Codex** para estruturar o prompt enviado ao Gemini. A resposta inicial não vinha em JSON consistente. Com esse auxilio consegui ajustar o prompt para forçar o formato de saída. Também utilizei para correção de identação de todo o código e sugestões de organização de código. 
 
 ## Melhorias futuras
 
-- Testes automatizados (unitários no back-end, componentes no front-end)
 - Autenticação de usuários
 - Edição de título/descrição da tarefa (hoje só status é atualizado)
+- Priorização mais inteligente com IA
