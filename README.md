@@ -4,11 +4,9 @@ Aplicação web para cadastrar, listar, filtrar e acompanhar tarefas, com sugest
 
 🔗 **App hospedado no Vercel:** https://teamtask-gerenciador-de-tarefas.vercel.app
 
-🔗 **API:** https://teamtask-gerenciador-de-tarefas.onrender.com
+🔗 **API no Render:** https://teamtask-gerenciador-de-tarefas.onrender.com
 
-🔗 **Repo:** (https://github.com/beatrizfariasilva/teamtask-gerenciador-de-tarefas/tree/main)
-
-(image-2.png)
+🔗 **Link do repositório:** https://github.com/beatrizfariasilva/teamtask-gerenciador-de-tarefas/tree/main
 
 ---
 
