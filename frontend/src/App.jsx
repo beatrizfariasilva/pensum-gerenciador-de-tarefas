@@ -1,3 +1,4 @@
+// configurações e constantes 
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
@@ -14,6 +15,7 @@ const FILTROS = {
   CONCLUIDAS: "Concluídas",
 };
 
+//estados da tela
 function App() {
   const [tarefas, setTarefas] = useState([]);
   const [carregandoTarefas, setCarregandoTarefas] = useState(true);
@@ -28,6 +30,7 @@ function App() {
   const [prioridades, setPrioridades] = useState([]);
   const [carregandoPrioridades, setCarregandoPrioridades] = useState(false);
 
+  // carrega as tarefas assim que a tela abre
   useEffect(() => {
     async function carregarTarefas() {
       try {
@@ -45,6 +48,7 @@ function App() {
     carregarTarefas();
   }, []);
 
+  // fecha o modal ao pressionar "x"
   useEffect(() => {
     if (!modalAberto) return;
     function aoTeclar(event) {
@@ -54,6 +58,7 @@ function App() {
     return () => window.removeEventListener("keydown", aoTeclar);
   }, [modalAberto]);
 
+  // criação, atualização e exclusão de tarefas
   async function criarTarefa(event) {
     event.preventDefault();
     if (!titulo.trim() || salvando) return;
@@ -130,7 +135,7 @@ function App() {
       setErro("Não foi possível excluir a tarefa.");
     }
   }
-
+  // gera sugestões de prioridade usando a API do gemini
   async function gerarPrioridades() {
     try {
       setCarregandoPrioridades(true);
@@ -145,6 +150,7 @@ function App() {
     }
   }
 
+  // infos calculadas a partir da lista de tarefas
   const tarefasFiltradas = useMemo(() => {
     if (filtro === FILTROS.PENDENTES) {
       return tarefas.filter((tarefa) => tarefa.status === STATUS.PENDENTE);
@@ -165,6 +171,7 @@ function App() {
     [tarefas]
   );
 
+  // base da estrutura visual 
   return (
     <main className="app">
       <header className="topo">
