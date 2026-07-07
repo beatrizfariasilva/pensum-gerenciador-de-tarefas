@@ -77,6 +77,7 @@ def sugerir_prioridades():
         - Use apenas as prioridades: Alta, Média ou Baixa.
         - Explique o motivo de forma curta.
         - Responda somente em JSON válido.
+        - A ordem da sua resposta deve ser obrigatoriamente da mais importante para a menos importante 
         - Não use markdown.
         - Não escreva texto antes ou depois do JSON.
 
