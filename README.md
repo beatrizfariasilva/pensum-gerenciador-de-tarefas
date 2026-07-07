@@ -41,15 +41,14 @@ teamtask-gerenciador-de-tarefas/
    ├─ package.json
    ├─ vite.config.js
    ├─ public/
-   │  ├─ favicon.svg
+   │  ├─ op2.svg
    │  └─ icons.svg
    └─ src/
       ├─ App.jsx
       ├─ App.css
       ├─ index.css
-      ├─ main.jsx
-      └─ assets/
-         └─ hero.png
+      └─ main.jsx
+      
 ```
 
 Front-end e back-end são independentes, comunicam-se via HTTP.
@@ -64,7 +63,7 @@ Front-end e back-end são independentes, comunicam-se via HTTP.
 | DELETE | `/tarefas/<id>` | Remove uma tarefa |
 | GET | `/tarefas/prioridades` | Retorna sugestão de prioridade via IA |
 
-Exemplo — criar tarefa:
+Exemplo - criação de tarefa:
 ```json
 POST /tarefas
 {
@@ -74,7 +73,7 @@ POST /tarefas
 }
 ```
 
-Exemplo — sugestão de prioridade:
+Exemplo - sugestão de prioridade:
 ```json
 GET /tarefas/prioridades
 [
@@ -129,10 +128,11 @@ npm run dev
 
 - **Claude IA** para sugestão e melhoria de interface, principalmente no front. Também auxiliou na implementação de tratamento de erros e validação dos campos. 
 
-- **Codex** para estruturar o prompt enviado ao Gemini. A resposta inicial não vinha em JSON consistente. Com esse auxilio consegui ajustar o prompt para forçar o formato de saída. Também utilizei para correção de identação de todo o código e sugestões de organização de código. 
+- **Codex** para estruturar o prompt enviado ao Gemini. A resposta inicial não vinha em JSON consistente. Com esse auxilio consegui ajustar o prompt para forçar o formato de saída. Também utilizei para correção de identação de todo o código e sugestões de organização (legibilidade e organização). 
 
 ## Melhorias futuras
 
+- Melhoria de organização e legibilidade do front (Separar os componentes do App.jsx principal, a camada de API e as constantes)
 - Autenticação de usuários
 - Edição de título/descrição da tarefa (hoje só status é atualizado)
 - Priorização mais inteligente com IA
