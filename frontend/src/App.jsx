@@ -48,7 +48,7 @@ function App() {
     carregarTarefas();
   }, []);
 
-  // fecha o modal ao pressionar "x"
+  // fecha o modal ao pressionar "esc" no teclado
   useEffect(() => {
     if (!modalAberto) return;
     function aoTeclar(event) {
